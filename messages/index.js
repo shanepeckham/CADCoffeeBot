@@ -19,7 +19,7 @@ var connector = useEmulator ? new builder.ChatConnector() : new botbuilder_azure
 });
 
 var bot = new builder.UniversalBot(connector);
-var logicAppURL = process.env.ecommerceLogicApp;
+var logicAppURL = process.env.logicAppURL;
 var feedback;
 
 bot.dialog('/', [
