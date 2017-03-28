@@ -35,8 +35,26 @@ bot.dialog('/', [
     },
     function (session, results) {
         session.userData.coffeeType = results.response.entity;
+        var total;
+        switch (session.userData.coffeeType)
+        {
+            case "Latte":
+                total = "$3.45";
+                break;
+            case "Americano":
+                total = "$4.75";
+                break;
+            case "Cappucino":
+                total = "$3.45";
+                break;
+            case "Espresso":
+                total = "$3.75";
+                break;
+            default:
+                total = "$0.00";
+        }
         session.send("Got it... " +  session.userData.emailAddress + 
-                    ", you would like a " +  session.userData.coffeeType + ".");
+                    ", you would like a " +  session.userData.coffeeType + ". That will be " + total);
         // Set the headers
             var headers = {
           'Content-Type': 'application/json'
@@ -47,7 +65,7 @@ bot.dialog('/', [
             url: logicAppURL, 
             method: 'POST',
             headers: headers,
-            json: {"preferredLanguage":session.userData.preferredLanguage, 'emailAddress':session.userData.emailAddress, 'coffeeType':session.userData.coffeeType}
+            json: {"preferredLanguage":session.userData.preferredLanguage, 'emailAddress':session.userData.emailAddress, 'coffeeType':session.userData.coffeeType, 'total': total}
         }
         
        // Start the request
