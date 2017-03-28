@@ -73,18 +73,11 @@ bot.dialog('/', [
        {
         request(options, function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                // Print out the response body
-           //     context.log('body', body)
-              //     session.send(body);
-             //      feedback = body;
                    feedback = JSON.stringify(body);
-                   //var lng = JSON.parse(feedback);
-                   session.send('Language is ' + feedback);
                    session.send(util.inspect(feedback, {showHidden: false, depth: null})); 
             }
             else
             {
-              //  context.log('error occured ' + response.statusCode.toString());
                 session.send(response.statusCode.toString());
             }
         })
